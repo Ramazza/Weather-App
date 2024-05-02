@@ -5,7 +5,7 @@ import WeatherInfo from '../../components/weather-info';
 
 function Home() {
 
-    const { setCity, getLat, getWeather, lat, lon } = useContext(UserContext);
+    const { setCity, getLat, getWeather, lat, lon, weather } = useContext(UserContext);
 
     const handleSearch = () => {
         getLat();
@@ -30,7 +30,7 @@ function Home() {
                 <SearchBox placeholder='Procure sua cidade' onChange={(e) => setCity(e.target.value)} onKeyDown={handleKeyPress}/>
                 <SearchButton onClick={handleSearch}>Procurar</SearchButton>
             </SearchContainer>
-            <WeatherInfo />
+            {weather.name && <WeatherInfo />}
         </Container>
     );
 }
