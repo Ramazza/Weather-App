@@ -1,7 +1,7 @@
 # Weather App
 Este projeto é um aplicativo de clima que permite aos usuários pesquisar previsões meteorológicas por localização. Ele exibe as condições meteorológicas atuais. Utiliza React para construir componentes e o Axios para buscar dados meteorológicos.
 
-#Foco de Aprendizado
+# Foco de Aprendizado
 Busca de dados assíncrona com Axios.
 Manipulação de entrada do usuário e submissões de formulário.
 
