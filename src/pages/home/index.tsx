@@ -1,20 +1,36 @@
+import { useContext, useEffect } from 'react';
 import { Container, Title, SearchContainer, SearchBox, SearchButton } from './styles'
+import { UserContext } from '../../context/userContext';
+import WeatherInfo from '../../components/weather-info';
 
 function Home() {
 
-    // City to lon and lat
-    // https://api.openweathermap.org/geo/1.0/direct?q={ City Name }&appid=7add3f6a992603ea0e9738c6d29d54ad
+    const { setCity, getLat, getWeather, lat, lon } = useContext(UserContext);
 
-    // City Weather
-    // https://api.openweathermap.org/data/2.5/weather?lat={ Lat }&lon={ Lon }&appid=7add3f6a992603ea0e9738c6d29d54ad
+    const handleSearch = () => {
+        getLat();
+    }
+
+    useEffect(() => {
+        if (lat && lon && lat !== '' && lon !== '') {
+            getWeather();
+        }
+    }, [lat, lon]);
+
+    const handleKeyPress = (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
 
     return(
         <Container>
-            <Title>Procura uma cidade ae porra</Title>
+            <Title>Previsão do Tempo</Title>
             <SearchContainer>
-                <SearchBox></SearchBox>
-                <SearchButton>procurar</SearchButton>
+                <SearchBox placeholder='Procure sua cidade' onChange={(e) => setCity(e.target.value)} onKeyDown={handleKeyPress}/>
+                <SearchButton onClick={handleSearch}>Procurar</SearchButton>
             </SearchContainer>
+            <WeatherInfo />
         </Container>
     );
 }
